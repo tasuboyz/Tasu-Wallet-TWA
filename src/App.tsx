@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TonConnectButton } from '@tonconnect/ui-react';
 import { useTonConnect } from './hooks/useTonConnect';
 import { useTonClient } from './hooks/useTonClient';
@@ -7,12 +7,11 @@ import PaymentButton from './components/PaymentButton';
 function App() {
   const { sender, connected } = useTonConnect();
   const client = useTonClient() || null;
-  const hasReloaded = useRef(false);
+  const [isWalletConnected, setIsWalletConnected] = useState(connected);
 
   useEffect(() => {
-    if (connected && !hasReloaded.current) {
-      hasReloaded.current = true;
-      window.location.reload();
+    if (connected) {
+      setIsWalletConnected(true);
     }
   }, [connected]);
 
@@ -23,7 +22,7 @@ function App() {
         <TonConnectButton />
       </header>
       <main>
-        {connected ? (
+        {isWalletConnected ? (
           <>
             <p>Wallet connesso. Pronto per il pagamento.</p>
             <PaymentButton sender={sender} client={client} />
