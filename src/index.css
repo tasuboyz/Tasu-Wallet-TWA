@@ -55,6 +55,13 @@ button:hover:not(:disabled) {
   background-color: #0056b3;
 }
 
+.TonConnectButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
 @media (max-width: 600px) {
   .App {
     padding: 10px;
