@@ -19,19 +19,18 @@ function App() {
     <div className="App">
       <header>
         <h1>Sistema di Pagamento TON</h1>
-        <div className="TonConnectButton">
-          <TonConnectButton />
-        </div>
+        <TonConnectButton />
       </header>
       <main>
-        {isWalletConnected ? (
-          <>
-            <p>Wallet connesso. Pronto per il pagamento.</p>
-            <PaymentButton sender={sender} client={client} />
-          </>
-        ) : (
+        {/* Rimuovi il controllo dello stato di connessione */}
+        {/* {isWalletConnected ? ( */}
+        <>
+          <p>Wallet connesso. Pronto per il pagamento.</p>
+          <PaymentButton sender={sender} client={client} />
+        </>
+        {/* ) : (
           <p>Connetti il tuo wallet TON per effettuare un pagamento</p>
-        )}
+        )} */}
       </main>
     </div>
   );
