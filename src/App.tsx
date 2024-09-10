@@ -3,6 +3,7 @@ import { TonConnectButton } from '@tonconnect/ui-react';
 import { useTonConnect } from './hooks/useTonConnect';
 import { useTonClient } from './hooks/useTonClient';
 import PaymentButton from './components/PaymentButton';
+import './App.css';
 
 function App() {
   const { sender, connected } = useTonConnect();
@@ -19,7 +20,9 @@ function App() {
     <div className="App">
       <header>
         <h1>Sistema di Pagamento TON</h1>
-        <TonConnectButton />
+        <div className="TonConnectButton">
+          <TonConnectButton />
+        </div>
       </header>
       <main>
         {isWalletConnected ? (
