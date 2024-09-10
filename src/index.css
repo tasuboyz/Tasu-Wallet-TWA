@@ -69,13 +69,6 @@ p {
   font-weight: bold;
 }
 
-.button-container {
-  display: flex;
-  justify-content: center; /* Centra orizzontalmente */
-  align-items: center; /* Centra verticalmente */
-  height: 100vh; /* Altezza del contenitore */
-}
-
 .ton-connect-button {
   background-color: var(--primary-color);
   color: white;
