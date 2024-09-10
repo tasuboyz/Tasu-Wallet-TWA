@@ -14,6 +14,8 @@ function App() {
     if (connected) {
       setIsWalletConnected(true);
       setShowPopup(true);
+    } else {
+      setIsWalletConnected(false);
     }
   }, [connected]);
 
@@ -36,10 +38,14 @@ function App() {
             </div>
           </div>
         )}
-        <>
-          <p>Wallet connesso. Pronto per il pagamento.</p>
-          <PaymentButton sender={sender} client={client} />
-        </>
+        {isWalletConnected ? (
+          <>
+            <p>Wallet connesso. Pronto per il pagamento.</p>
+            <PaymentButton sender={sender} client={client} />
+          </>
+        ) : (
+          <p>Connetti il tuo wallet TON per effettuare un pagamento</p>
+        )}
       </main>
     </div>
   );
