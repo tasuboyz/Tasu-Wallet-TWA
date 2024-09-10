@@ -22,7 +22,9 @@ function App() {
       <header>
         <h1>Sistema di Pagamento TON</h1>        
       </header>
-      <TonConnectButton />
+      <div className="button-container">
+        <TonConnectButton />
+      </div>
       <main>
         {isWalletConnected ? (
           <>
