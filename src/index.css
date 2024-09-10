@@ -19,21 +19,37 @@ body {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 header {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   margin-bottom: 30px;
+  text-align: center;
 }
 
 h1 {
   color: var(--primary-color);
   font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.ton-button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: white;
   border-radius: 8px;
   padding: 20px;
@@ -84,25 +100,18 @@ p {
   background-color: var(--secondary-color);
 }
 
-/* Layout responsive */
 @media (max-width: 600px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  h1 {
-    margin-bottom: 10px;
-  }
-
   .App {
     padding: 10px;
   }
 
-  button {
-    width: 100%;
-    padding: 12px;
-    font-size: 18px;
+  header {
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: 20px;
+    margin-bottom: 15px;
   }
 
   main {

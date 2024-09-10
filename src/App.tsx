@@ -20,9 +20,11 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>Sistema di Pagamento TON</h1>        
+        <h1>Sistema di Pagamento TON</h1>
+        <div className="ton-button-container">
+          <TonConnectButton />
+        </div>
       </header>
-        <TonConnectButton />
       <main>
         {isWalletConnected ? (
           <>
