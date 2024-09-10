@@ -8,20 +8,14 @@ function App() {
   const { sender, connected } = useTonConnect();
   const client = useTonClient() || null;
   const [isWalletConnected, setIsWalletConnected] = useState(connected);
-  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     if (connected) {
       setIsWalletConnected(true);
-      setShowPopup(true);
     } else {
       setIsWalletConnected(false);
     }
   }, [connected]);
-
-  const closePopup = () => {
-    setShowPopup(false);
-  };
 
   return (
     <div className="App">
@@ -30,14 +24,6 @@ function App() {
         <TonConnectButton />
       </header>
       <main>
-        {showPopup && (
-          <div className="popup">
-            <div className="popup-content">
-              <p>Wallet connesso con successo!</p>
-              <button onClick={closePopup}>Chiudi</button>
-            </div>
-          </div>
-        )}
         {isWalletConnected ? (
           <>
             <p>Wallet connesso. Pronto per il pagamento.</p>
