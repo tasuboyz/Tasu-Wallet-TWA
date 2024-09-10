@@ -7,13 +7,7 @@ import PaymentButton from './components/PaymentButton';
 function App() {
   const { sender, connected } = useTonConnect();
   const client = useTonClient() || null;
-  const [isWalletConnected, setIsWalletConnected] = useState(connected);
-
-  useEffect(() => {
-    if (connected) {
-      setIsWalletConnected(true);
-    }
-  }, [connected]);
+  //const [isWalletConnected, setIsWalletConnected] = useState(connected);
 
   return (
     <div className="App">
