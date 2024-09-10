@@ -7,7 +7,19 @@ import PaymentButton from './components/PaymentButton';
 function App() {
   const { sender, connected } = useTonConnect();
   const client = useTonClient() || null;
-  //const [isWalletConnected, setIsWalletConnected] = useState(connected);
+  const [isWalletConnected, setIsWalletConnected] = useState(connected);
+  const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+    if (connected) {
+      setIsWalletConnected(true);
+      setShowPopup(true);
+    }
+  }, [connected]);
+
+  const closePopup = () => {
+    setShowPopup(false);
+  };
 
   return (
     <div className="App">
@@ -16,15 +28,18 @@ function App() {
         <TonConnectButton />
       </header>
       <main>
-        {/* Rimuovi il controllo dello stato di connessione */}
-        {/* {isWalletConnected ? ( */}
+        {showPopup && (
+          <div className="popup">
+            <div className="popup-content">
+              <p>Wallet connesso con successo!</p>
+              <button onClick={closePopup}>Chiudi</button>
+            </div>
+          </div>
+        )}
         <>
           <p>Wallet connesso. Pronto per il pagamento.</p>
           <PaymentButton sender={sender} client={client} />
         </>
-        {/* ) : (
-          <p>Connetti il tuo wallet TON per effettuare un pagamento</p>
-        )} */}
       </main>
     </div>
   );
