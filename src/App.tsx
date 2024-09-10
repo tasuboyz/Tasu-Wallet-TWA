@@ -3,7 +3,6 @@ import { TonConnectButton } from '@tonconnect/ui-react';
 import { useTonConnect } from './hooks/useTonConnect';
 import { useTonClient } from './hooks/useTonClient';
 import PaymentButton from './components/PaymentButton';
-import './App.css';
 
 function App() {
   const { sender, connected } = useTonConnect();
