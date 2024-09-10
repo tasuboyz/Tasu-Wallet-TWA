@@ -8,10 +8,12 @@ interface PaymentButtonProps {
   client: TonClient | null;
 }
 
-const RECIPIENT_ADDRESS = 'UQCjYxuYXFXOff36CKoW29ViccJWutLB_LLi3whrDrv-Ml1v'; // Inserisci qui l'indirizzo del tuo wallet
+const RECIPIENT_ADDRESS = 'UQCjYxuYXFXOff36CKoW29ViccJWutLB_LLi3whrDrv-Ml1v'; //Wallet di TonSpace
 
 const PaymentButton: React.FC<PaymentButtonProps> = ({ sender, client }) => {
   const [isLoading, setIsLoading] = React.useState(false);
+  const [amount, setAmount] = React.useState('0.01');
+
   const handlePayment = async () => {
     if (!client) {
       console.error('TonClient non inizializzato');
@@ -22,7 +24,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({ sender, client }) => {
       const body = beginCell().storeUint(0, 32).storeStringTail('Grazie per il pagamento!').endCell();
       await sender.send({
         to: Address.parse(RECIPIENT_ADDRESS),
-        value: toNano('0.01'), // Modifica questo valore secondo le tue necessità
+        value: toNano(amount), // Usa la quantità inserita dall'utente
         body: body,
       });
       alert('Pagamento inviato con successo!');
@@ -35,9 +37,17 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({ sender, client }) => {
   };
 
   return (
-    <button onClick={handlePayment} disabled={isLoading}>
-      {isLoading ? 'Invio in corso...' : 'Invia pagamento (0.01 TON)'}
-    </button>
+    <div>
+      <input
+        type="number"
+        value={amount}
+        onChange={(e) => setAmount(e.target.value)}
+        placeholder="Inserisci la quantità di TON"
+      />
+      <button onClick={handlePayment} disabled={isLoading}>
+        {isLoading ? 'Invio in corso...' : `Invia pagamento (${amount} TON)`}
+      </button>
+    </div>
   );
 };
 
