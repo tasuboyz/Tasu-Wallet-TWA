@@ -10,11 +10,7 @@ function App() {
   const [isWalletConnected, setIsWalletConnected] = useState(connected);
 
   useEffect(() => {
-    if (connected) {
-      setIsWalletConnected(true);
-    } else {
-      setIsWalletConnected(false);
-    }
+    setIsWalletConnected(connected);
   }, [connected]);
 
   return (
