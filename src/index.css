@@ -1,13 +1,16 @@
 :root {
-  --primary-color: #0088CC;
-  --secondary-color: #005580;
-  --background-color: #F0F0F0;
+  /* Palette di colori migliorata */
+  --primary-color: #4A90E2;
+  --secondary-color: #34495E;
+  --background-color: #F5F7FA;
   --text-color: #333333;
-  --error-color: #FF4136;
+  --error-color: #E74C3C;
+  --success-color: #2ECC71;
+  --white: #FFFFFF;
 }
 
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Roboto', 'Arial', sans-serif; /* Font più moderno */
   background-color: var(--background-color);
   color: var(--text-color);
   line-height: 1.6;
@@ -18,7 +21,7 @@ body {
 .App {
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 40px 20px; /* Aumentato il padding verticale */
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -28,20 +31,22 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px; /* Aumentato lo spazio sotto l'header */
   text-align: center;
 }
 
 h1 {
   color: var(--primary-color);
-  font-size: 24px;
+  font-size: 32px; /* Aumentata la dimensione del titolo */
   margin-bottom: 20px;
+  font-weight: 700; /* Grassetto */
 }
 
 .ton-button-container {
   display: flex;
   justify-content: center;
   width: 100%;
+  margin-top: 20px; /* Aggiunto spazio sopra il pulsante */
 }
 
 main {
@@ -50,34 +55,38 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: white;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: var(--white);
+  border-radius: 12px; /* Bordi più arrotondati */
+  padding: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombra più pronunciata */
 }
 
 button {
   background-color: var(--primary-color);
-  color: white;
+  color: var(--white);
   border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
+  padding: 12px 24px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease;
+  font-weight: 600; /* Semibold */
+  transition: all 0.3s ease;
 }
 
 button:hover {
   background-color: var(--secondary-color);
+  transform: translateY(-2px); /* Effetto di sollevamento al passaggio del mouse */
 }
 
 button:disabled {
   background-color: #CCCCCC;
   cursor: not-allowed;
+  transform: none;
 }
 
 p {
   margin-bottom: 20px;
+  font-size: 18px;
 }
 
 .error {
@@ -85,21 +94,86 @@ p {
   font-weight: bold;
 }
 
+.success {
+  color: var(--success-color);
+  font-weight: bold;
+}
+
 .ton-connect-button {
   background-color: var(--primary-color);
-  color: white;
+  color: var(--white);
   border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
+  padding: 12px 24px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 
 .ton-connect-button:hover {
   background-color: var(--secondary-color);
+  transform: translateY(-2px);
 }
 
+@media (max-width: 600px) {
+  .App {
+    padding: 20px 10px;
+  }
+
+  header {
+    margin-bottom: 30px;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  main {
+    padding: 20px;
+  }
+
+  button, .ton-connect-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+input[type="number"]:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+/* Nuova classe per il messaggio di stato del wallet */
+.wallet-status {
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.wallet-status.connected {
+  background-color: var(--success-color);
+  color: var(--white);
+}
+
+.wallet-status.disconnected {
+  background-color: var(--error-color);
+  color: var(--white);
+}
+/* 
 @media (max-width: 600px) {
   .App {
     padding: 10px;
@@ -125,4 +199,4 @@ input[type="number"] {
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-}
+} */
