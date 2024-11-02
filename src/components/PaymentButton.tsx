@@ -27,7 +27,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({ sender, client }) => {
         value: toNano(amount), // Usa la quantità inserita dall'utente
         body: body,
       });
-      alert('Pagamento inviato con successo!');
+      //alert('Pagamento inviato con successo!');
     } catch (error) {
       console.error('Errore durante l\'invio del pagamento:', error);
       alert('Si è verificato un errore durante l\'invio del pagamento.');
