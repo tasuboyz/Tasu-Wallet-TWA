@@ -1,54 +1,67 @@
 :root {
-  /* Palette di colori migliorata */
-  --primary-color: #4A90E2;
-  --secondary-color: #34495E;
-  --background-color: #F5F7FA;
-  --text-color: #333333;
-  --error-color: #E74C3C;
-  --success-color: #2ECC71;
-  --white: #FFFFFF;
+  --ton-blue: #0088CC;
+  --ton-dark: #026CBA;
+  --transition-speed: 0.4s;
+  --success-color: #2e7d32;
+  --error-color: #c62828;
+  --white: #ffffff;
+  --background-grey: #f0f2f5;
+  --border-color: #e0e0e0;
 }
 
+/* Base Styles */
 body {
-  font-family: 'Roboto', 'Arial', sans-serif; /* Font più moderno */
-  background-color: var(--background-color);
-  color: var(--text-color);
-  line-height: 1.6;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
   margin: 0;
-  padding: 0;
+  background: var(--background-grey);
+  transition: background-color var(--transition-speed) ease;
 }
 
+/* App Container */
 .App {
   max-width: 800px;
   margin: 0 auto;
-  padding: 40px 20px; /* Aumentato il padding verticale */
+  padding: 40px 20px;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
+/* Header Styles */
 header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 40px; /* Aumentato lo spazio sotto l'header */
+  margin-bottom: 40px;
   text-align: center;
 }
 
 h1 {
-  color: var(--primary-color);
-  font-size: 32px; /* Aumentata la dimensione del titolo */
+  color: var(--ton-blue);
+  font-size: 32px;
   margin-bottom: 20px;
-  font-weight: 700; /* Grassetto */
-}
-
-.ton-button-container {
-  display: flex;
+  font-weight: 700;
   justify-content: center;
-  width: 100%;
-  margin-top: 20px; /* Aggiunto spazio sopra il pulsante */
+  display: flex;
 }
 
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 25px;
+  font-size: 24px;
+  font-weight: 600;
+  background: linear-gradient(to right, var(--theme-primary, var(--ton-blue)), var(--theme-secondary, var(--ton-dark)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all var(--transition-speed) ease;
+}
+
+/* Main Content */
 main {
   flex-grow: 1;
   display: flex;
@@ -56,26 +69,58 @@ main {
   justify-content: center;
   align-items: center;
   background-color: var(--white);
-  border-radius: 12px; /* Bordi più arrotondati */
+  border-radius: 12px;
   padding: 30px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombra più pronunciata */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-button {
-  background-color: var(--primary-color);
+/* Payment Container */
+.payment-container {
+  background: var(--white);
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  max-width: 420px;
+  width: 100%;
+  transform: translateY(0);
+  transition: all var(--transition-speed) ease;
+}
+
+.payment-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+}
+
+/* Button Styles */
+.ton-button, button {
+  background: var(--theme-primary, var(--ton-blue));
   color: var(--white);
   border: none;
-  padding: 12px 24px;
-  border-radius: 6px;
-  cursor: pointer;
+  border-radius: 12px;
+  padding: 14px 28px;
   font-size: 16px;
-  font-weight: 600; /* Semibold */
-  transition: all 0.3s ease;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  margin: 15px 0;
+  transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 }
 
-button:hover {
-  background-color: var(--secondary-color);
-  transform: translateY(-2px); /* Effetto di sollevamento al passaggio del mouse */
+.ton-button:hover, button:hover {
+  background: var(--theme-secondary, var(--ton-dark));
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.connect-button {
+  justify-content: center;
+  display: flex;
+}
+
+.ton-button:active, button:active {
+  transform: translateY(0);
 }
 
 button:disabled {
@@ -84,38 +129,179 @@ button:disabled {
   transform: none;
 }
 
-p {
-  margin-bottom: 20px;
-  font-size: 18px;
-}
-
-.error {
-  color: var(--error-color);
-  font-weight: bold;
-}
-
-.success {
-  color: var(--success-color);
-  font-weight: bold;
-}
-
-.ton-connect-button {
-  background-color: var(--primary-color);
-  color: var(--white);
-  border: none;
-  padding: 12px 24px;
-  border-radius: 6px;
-  cursor: pointer;
+/* Input Styles */
+.amount-input, input[type="number"] {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  margin: 15px 0;
   font-size: 16px;
-  font-weight: 600;
-  transition: all 0.3s ease;
+  box-sizing: border-box;
+  transition: all var(--transition-speed) ease;
+  background: #f8f9fa;
 }
 
-.ton-connect-button:hover {
-  background-color: var(--secondary-color);
-  transform: translateY(-2px);
+.amount-input:focus, input[type="number"]:focus {
+  border-color: var(--theme-primary, var(--ton-blue));
+  outline: none;
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(0,136,204,0.2);
 }
 
+/* Wallet Status */
+.wallet-status {
+  padding: 12px;
+  margin: 15px 0;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 500;
+  transition: all var(--transition-speed) ease;
+}
+
+.wallet-status.connected {
+  background: #e8f5e9;
+  color: var(--success-color);
+  animation: pulseGreen 2s infinite;
+}
+
+.wallet-status.disconnected {
+  background: #ffebee;
+  color: var(--error-color);
+}
+
+/* Logo and Icons */
+.ton-logo {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 25px;
+  display: block;
+  animation: float 3s ease-in-out infinite;
+}
+
+.ton-logo path {
+  fill: var(--theme-primary, var(--ton-blue));
+  transition: fill var(--transition-speed) ease;
+}
+
+/* Theme Wheel */
+.theme-wheel {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  transition: transform var(--transition-speed) ease;
+  animation: spin 20s linear infinite;
+}
+
+.theme-wheel:hover {
+  animation-play-state: paused;
+  transform: scale(1.1);
+}
+
+/* Theme Options */
+.theme-options {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  padding: 15px;
+  display: none;
+  transform: translateY(20px);
+  transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-options.active {
+  display: block;
+  transform: translateY(0);
+}
+
+/* Animations */
+@keyframes pulseGreen {
+  0% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(46, 125, 50, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+/* Theme Colors */
+.theme-option {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin: 8px;
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+  border: 3px solid transparent;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transform: scale(1);
+}
+
+.theme-option:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.theme-option.active {
+  border-color: var(--white);
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+/* Theme Gradients */
+.theme-blue { background: linear-gradient(135deg, #00bfff, #0088CC, #004080); }
+.theme-purple { background: linear-gradient(135deg, #da22ff, #9013fe, #5c007a); }
+.theme-green { background: linear-gradient(135deg, #00f2c3, #00b540, #005d1f); }
+.theme-orange { background: linear-gradient(135deg, #ff8000, #ff4400, #cc2200); }
+.theme-pink { background: linear-gradient(135deg, #ff2d55, #ff0f50, #cc0040); }
+
+/* Theme Active States */
+body.theme-blue-active { 
+  background: #e1f5ff;
+  --theme-primary: #0088CC;
+  --theme-secondary: #004080;
+}
+
+body.theme-purple-active { 
+  background: #f3e5ff;
+  --theme-primary: #9013fe;
+  --theme-secondary: #5c007a;
+}
+
+body.theme-green-active { 
+  background: #e5fff2;
+  --theme-primary: #00b540;
+  --theme-secondary: #005d1f;
+}
+
+body.theme-orange-active { 
+  background: #fff1e5;
+  --theme-primary: #ff4400;
+  --theme-secondary: #cc2200;
+}
+
+body.theme-pink-active { 
+  background: #ffe5eb;
+  --theme-primary: #ff0f50;
+  --theme-secondary: #cc0040;
+}
+
+/* Responsive Design */
 @media (max-width: 600px) {
   .App {
     padding: 20px 10px;
@@ -134,69 +320,8 @@ p {
     padding: 20px;
   }
 
-  button, .ton-connect-button {
+  button, .ton-button {
     padding: 10px 20px;
     font-size: 14px;
   }
 }
-
-input[type="number"] {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 16px;
-  transition: border-color 0.3s ease;
-}
-
-input[type="number"]:focus {
-  border-color: var(--primary-color);
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
-}
-
-/* Nuova classe per il messaggio di stato del wallet */
-.wallet-status {
-  padding: 10px 15px;
-  border-radius: 6px;
-  font-weight: 600;
-  margin-bottom: 20px;
-}
-
-.wallet-status.connected {
-  background-color: var(--success-color);
-  color: var(--white);
-}
-
-.wallet-status.disconnected {
-  background-color: var(--error-color);
-  color: var(--white);
-}
-/* 
-@media (max-width: 600px) {
-  .App {
-    padding: 10px;
-  }
-
-  header {
-    margin-bottom: 20px;
-  }
-
-  h1 {
-    font-size: 20px;
-    margin-bottom: 15px;
-  }
-
-  main {
-    padding: 15px;
-  }
-}
-
-input[type="number"] {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-} */
